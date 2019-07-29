@@ -1,0 +1,39 @@
+require './lib/enumerable.rb'
+
+RSpec.describe Enumerable do
+  let(:result){ [] }
+  describe "#my_each" do
+    it "returns the object that it was invoked upon" do
+      expect([1,2,3].my_each { |n| n}).to eql([1,2,3])
+      # expect(array.my_each.to_a).to eq(array)
+    end
+
+    it "returns enumerator of the receiver" do
+      array=[1,2,3]
+      expect(array.my_each {|i| i }).to eql(array)
+    end
+  end
+  describe "#my_each_with_index" do
+    it "works with two arguments item and index" do
+      [1,2,3].my_each_with_index { |item, index|
+        result << item; result << index
+      }
+      expect(result).to eql([1,0,2,1,3,2])
+    end
+  end
+  describe "#my_select"  do
+    it "returns true if an item is even else false" do
+      arr=[1,2,3,4,4]
+      arr.my_select do |item|
+        result << item.even?
+      end
+      expect(result).to eql([false,true, false, true, true])
+    end
+    it "returns an item(s) which is(are) greater than 2" do
+      arr=[1,2,3,4,4]
+      result=arr.my_select { |item| item > 2}
+      expect(result).to eq([3,4,4])
+    end
+  end
+
+end
