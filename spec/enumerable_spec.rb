@@ -95,4 +95,30 @@ RSpec.describe Enumerable do
       expect(result).to eql(2)
     end
   end
+  describe "#my_map" do
+    it "maps even numbers" do
+      nums = [1,2,3,4,5,6,7,8,9,10]
+      expect(nums.map(&:even?)).to eql([false, true, false, true, false, true, false, true, false ,true])
+    end
+    it "multiplies each item by 2" do
+      nums = [1,2,3,4,5,6,7,8,9,10]
+      nums.my_map{ |i| i * 2 }
+    end
+  end
+  describe "#my_inject" do
+    it "returns cumulative multiplication of items" do
+      arr=[2,3,4]
+      result=arr.my_inject do
+        |i, e| i*e
+      end
+      expect(result).to eql(24)
+    end
+    it "returns cumulative multiplication of items" do
+      arr=[2,3,4]
+      result=arr.my_inject do
+        |i, e| i+e
+      end
+      expect(result).to eql(9)
+    end
+  end
 end

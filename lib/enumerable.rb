@@ -85,3 +85,14 @@ module Enumerable
     ac
   end
 end
+arr=[2,3,4]
+result=arr.my_inject do
+  |i, e| i*e
+end
+add=arr.my_inject do
+  |i, e| i+e
+end
+
+puts result
+
+puts add
