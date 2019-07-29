@@ -35,5 +35,37 @@ RSpec.describe Enumerable do
       expect(result).to eq([3,4,4])
     end
   end
+  describe "#my_all?" do
+    it "returns true if the length of all the words in the array are longer than 2" do
+      str=["wordd", "any", "honey", "med"]
+      result=str.my_all? {
+        |w| w.length>=2
+      }
+      expect(result).to be true
+    end
+    it "returns false if the length of one of the words in the array are less than 2" do
+      str=["wordd", "any", "honey", "med", " "]
+      result=str.my_all? {
+        |w| w.length>=2
+      }
+      expect(result).to be false
+    end
+  end
+  describe "#my_any" do
+    it "returns true if any of the items is true" do 
+      arr=[1,2,3,4,4]
+      result=arr.my_any? do
+        |i| i>2
+      end
+      expect(result).to be true
+    end
+    it "returns true if the length of any word in the array is longer than 2" do
+      str=["wordd", "any", "honey", "med"]
+      result=str.my_all? {
+        |w| w.length>=2
+      }
+      expect(result).to be true
+    end
+  end
 
 end
