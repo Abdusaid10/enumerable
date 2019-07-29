@@ -93,6 +93,3 @@ add=arr.my_inject do
   |i, e| i+e
 end
 
-puts result
-
-puts add
