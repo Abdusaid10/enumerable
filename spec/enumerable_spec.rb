@@ -51,7 +51,7 @@ RSpec.describe Enumerable do
       expect(result).to be false
     end
   end
-  describe "#my_any" do
+  describe "#my_any?" do
     it "returns true if any of the items is true" do 
       arr=[1,2,3,4,4]
       result=arr.my_any? do
@@ -67,5 +67,32 @@ RSpec.describe Enumerable do
       expect(result).to be true
     end
   end
-
+  describe "#my_none" do
+    it "returns true if none of the items is true" do
+      str=["wordd", "any", "honey", "med"]
+      result = str.my_none? do
+        |i| i.length<1
+      end
+      expect(result).to be true
+    end
+    it "returns false if any of the items is true" do
+      str=["wordd", "any", "honey", "med"]
+      result = str.my_none? do
+        |i| i.length<4
+      end
+      expect(result).to be false
+    end
+  end
+  describe "#my_count" do
+    it "returns the number of even numbers in the given array" do
+      nums = [1,2,3,4,5,6,7,8,9,10]
+      result=nums.my_count(&:even?)
+      expect(result).to eql(5)
+    end
+    it "returns the number of 2's" do
+      nums = [1,2,6,2,1,6]
+      result=nums.my_count(2)
+      expect(result).to eql(2)
+    end
+  end
 end
